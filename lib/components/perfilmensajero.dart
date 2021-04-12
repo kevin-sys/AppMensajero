@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
 import '../Menu.dart';
 import 'package:url_launcher/url_launcher.dart';
+//import 'package:flutter_launch/flutter_launch.dart';
 
 String _phoneNumber;
 
-
 class Perfilmensajero extends StatelessWidget {
-
   final idperfil;
   final List<Post> perfil;
   Perfilmensajero({Key key, this.perfil, this.idperfil});
+
+  
+
+ // void whatsAppOpen() async {
+   // bool whatsapp = await FlutterLaunch.hasApp(name: "WhatsApp");
+
+   // if (whatsapp) {
+   //   await FlutterLaunch.launchWathsApp(
+    //      phone: "5534992016100", message: "Hello, flutter_launch");
+   // } else {
+//print("Whatsapp não instalado");
+  //  }
+ // }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(primarySwatch: Colors.indigo),
       home: Scaffold(
         appBar: AppBar(
           title: Text('Perfil del Mensajero'),
@@ -59,45 +71,75 @@ class Perfilmensajero extends StatelessWidget {
                               SizedBox(
                                 height: 20,
                               ),
-                              FloatingActionButton(
-                                onPressed: () =>{
-                                  _phoneNumber=perfil[idperfil].telefono,
-                                  launch('tel://$_phoneNumber')
-
-                                },
-
-                                child: Icon(Icons.call),
-                                elevation: 50.0,
-                                backgroundColor: Colors.green,
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Column(
+                                    children: [
+                                      Text('Llamar'),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      FloatingActionButton(
+                                        onPressed: () => {
+                                          _phoneNumber =
+                                              perfil[idperfil].telefono,
+                                          launch('tel://$_phoneNumber')
+                                        },
+                                        child: Icon(Icons.call),
+                                        elevation: 50.0,
+                                        backgroundColor: Colors.red,
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text('WhatsApp'),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      FloatingActionButton(
+                                        onPressed: () => {_phoneNumber =
+                                              perfil[idperfil].telefono,
+                                          launch('tel://$_phoneNumber')},
+                                        child: Icon(Icons.link),
+                                        elevation: 50.0,
+                                        backgroundColor: Colors.green,
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-
-
-                              Text('Llamar'),
-
                               SizedBox(
-                                height: 20,
+                                height: 5,
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Column(
                                     children: [
                                       Text('Cumplimiento'),
-
-                                      CircleAvatar(child: Text( perfil[idperfil].cumplimiento)),
+                                      CircleAvatar(
+                                          child: Text(
+                                              perfil[idperfil].cumplimiento)),
                                     ],
                                   ),
                                   Column(
                                     children: [
                                       Text('Responsabilidad'),
-                                      CircleAvatar(child: Text(perfil[idperfil].responsabilidad)),
+                                      CircleAvatar(
+                                          child: Text(perfil[idperfil]
+                                              .responsabilidad)),
                                     ],
                                   ),
                                   Column(
                                     children: [
                                       Text('Amabilidad'),
-                                      CircleAvatar(child: Text(perfil[idperfil].amabilidad)),
+                                      CircleAvatar(
+                                          child: Text(
+                                              perfil[idperfil].amabilidad)),
                                     ],
                                   )
                                 ],
@@ -108,9 +150,7 @@ class Perfilmensajero extends StatelessWidget {
                               Text('Descripcion:'),
                               Text('Mensajero las 24 Horas'),
                               SizedBox(height: 20),
-
                               Text('Verificar Placa'),
-
                               Container(
                                 width: 100,
                                 height: 50,
